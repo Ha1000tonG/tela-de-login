@@ -1,13 +1,30 @@
-function logar() {
+function mostrarSenha() {
 
-    var email = document.getElementById('email').value;
-    var senha = document.getElementById('senha').value;
+    var imputPass = document.getElementById('senha')
+    var btnMostrarSenha = document.getElementById('btn-senha')
 
-    if (email == "hamiltongodoi@hotmail.com" && senha == "123456") {
-        // alert('Login Efetuado com Sucesso');
-        location.href = "home.html";
-
+    if (imputPass.Type === 'password') {
+        imputPass.setAttribute('type', 'text')
+        btnMostrarSenha.classList.replace('bi-lock', 'bi-unlock')
     } else {
-        alert('usuario ou Senha incorretos!');
+        imputPass.setAttribute('type', 'password')
+        btnMostrarSenha.classList.replace('bi-unlock', 'bi-lock')
     }
 }
+// function logar() {
+//     var email = document.getElementById('email').value;
+//     var senha = document.getElementById('senha').value;
+
+//     if (email == "hamiltongodoi@hotmail.com" && senha == "123456") {
+//         // alert('Login Efetuado com Sucesso');
+//         location.href = "home.html";
+
+//     } else {
+//         alert('usuario ou Senha incorretos!');
+//     }
+// }
+
+
+
+
+

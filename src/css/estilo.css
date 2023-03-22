@@ -72,12 +72,13 @@ input:valid~label {
     color: #fff;
 }
 
-.caixa-de-entrada ion-icon {
+.caixa-de-entrada i {
     position: absolute;
     right: 8px;
     color: #fff;
     font-size: 1.2em;
     top: 20px;
+    cursor: pointer;
 }
 
 .esquecer {
