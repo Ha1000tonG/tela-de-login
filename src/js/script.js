@@ -1,29 +1,28 @@
-function mostrarSenha() {
+const inputPass = document.getElementById('senha');
+const btnMostrarSenha = document.getElementById('btn-senha');
 
-    var imputPass = document.getElementById('senha')
-    var btnMostrarSenha = document.getElementById('btn-senha')
-
-    if (imputPass.Type === 'password') {
-        imputPass.setAttribute('type', 'text')
-        btnMostrarSenha.classList.replace('bi-lock', 'bi-unlock')
+btnMostrarSenha.onclick = () => {
+    if (inputPass.type === 'password') {
+        inputPass.type = 'text';
+        btnMostrarSenha.classList.add('bi-unlock');
     } else {
-        imputPass.setAttribute('type', 'password')
-        btnMostrarSenha.classList.replace('bi-unlock', 'bi-lock')
+        inputPass.type = 'password';
+        btnMostrarSenha.classList.remove('bi-unlock')
     }
 }
-// function logar() {
-//     var email = document.getElementById('email').value;
-//     var senha = document.getElementById('senha').value;
 
-//     if (email == "hamiltongodoi@hotmail.com" && senha == "123456") {
-//         // alert('Login Efetuado com Sucesso');
-//         location.href = "home.html";
+function logar() {
+    var email = document.getElementById('email').value;
+    var senha = document.getElementById('senha').value;
 
-//     } else {
-//         alert('usuario ou Senha incorretos!');
-//     }
-// }
+    if (email == "hamiltongodoi@hotmail.com" && senha == "123456") {
+        // alert('Login Efetuado com Sucesso');
+        location.href = "home.html";
 
+    } else {
+        alert('usuario ou Senha incorretos!');
+    }
+}
 
 
 

@@ -15,26 +15,26 @@
             <div class="caixa-do-formulario">
                 <div class="valor-do-formulario">
                     <form action="">
-
                         <h2>Login</h2>
 
                         <div class="caixa-de-entrada">
+                            <input type="email" required id="email" class="input" placeholder="">
                             <i class="bi bi-envelope"></i>
-                            <input type="email" required id="email">
-                            <label for="">Email</label>
-
+                            <label class="input-label" for="">Email</label>
                         </div>
 
                         <div class="caixa-de-entrada">
-                            <i class="bi bi-lock" id="btn-senha" onclick="mostrarSenha()"></i>
                             <input type="password" required id="senha">
+                            <i class="bi bi-lock" id="btn-senha"></i>
                             <label for="">Senha</label>
                         </div>
 
                         <div class="esquecer">
                             <label for=""><input type="checkbox">Lembrar-me <a href="#">Esqueci minha Senha</a></label>
                         </div>
+
                         <button onclick="logar(); return false">Entrar</button>
+
                         <div class="registrar">
                             <p>Você não possui uma conta? <a href="#">Registrar</a></p>
                         </div>
