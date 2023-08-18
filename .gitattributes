@@ -2,7 +2,4 @@
 * text=auto
 *.css linguist-detectable=true
 *.html linguist-detectable=true
-*.Cython linguist-detectable=false
-*.Fortran linguist-detectable=false
-*.C linguist-detectable=false
-*.C++ linguist-detectable=false
+*.html linguist-generated=true
