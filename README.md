@@ -7,9 +7,12 @@
 
 ## Detalhes do Projeto:
 Tela de Login com acesso ao site.
+
 Botão para mostrar e ocultar senha.
+
 Validações para senhas "fortes".
-Layaut responsivo.
+
+Layout responsivo.
 
 ## Links:
 #### :star: [`Projeto concluido:`](https://tela-de-login-two-sable.vercel.app/)
