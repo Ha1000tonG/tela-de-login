@@ -22,7 +22,7 @@ Esta imagem apresenta a tela de login do meu projeto, desenvolvida com HTML, CSS
   <img align="center" alt="html5" src="https://img.shields.io/badge/HTML5-E34F26?style=plastic&logo=html5&logoColor=white" />
   <img align="center" alt="css" src="https://img.shields.io/badge/CSS3-1572B6?style=plastic&logo=css3&logoColor=white" />
   <img align="center" alt="js" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=javascript&logoColor=black" />
-  <img align="center" alt="VSCode" src="https://img.shields.io/badge/-VS_Code-05122A?style=plastic&logo=visual-studio-code&logoColor=007ACC"/>
+  <img align="center" alt="VSCode" src="https://img.shields.io/badge/-Visual_Studio_Code-05122A?style=plastic&logo=visual-studio-code&logoColor=007ACC"/>
   <img align="center" alt="Figma" src="https://img.shields.io/badge/Figma-F24E1E?style=plastic&logo=figma&logoColor=white" />
 
 
