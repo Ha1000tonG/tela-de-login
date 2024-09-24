@@ -33,7 +33,7 @@ Esta imagem apresenta a tela de login do meu projeto, desenvolvida com HTML, CSS
 
 ## Links:
 #### :star: [`Acessar o Projeto:`](https://tela-de-login-two-sable.vercel.app/)
-#### :star: [`Acessar o Modelo:`](https://www.figma.com/design/inZpVN4UVy0A1XNKubE0yc/Untitled?node-id=3-116&t=qhB5qHZFdFMZ66Nk-4)
+#### :star: [`Acessar o Modelo Figma:`](https://www.figma.com/design/inZpVN4UVy0A1XNKubE0yc/Untitled?node-id=3-116&t=qhB5qHZFdFMZ66Nk-4)
   
 #
 <div align="center"> <img src="https://img.shields.io/github/license/dropbox/dropbox-sdk-java"/></div>  
