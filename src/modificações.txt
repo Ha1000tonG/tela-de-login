@@ -1,0 +1,52 @@
+1. Correção do Rótulo (Label) Flutuante
+Problema Inicial: Os rótulos "Email" and "Senha" voltavam para dentro do campo de digitação mesmo depois que o usuário digitava algo.
+Solução:
+Adicionamos placeholder=" " nos campos input de e-mail and senha. Isso garante que o CSS possa diferenciar um campo vazio de um preenchido.
+Adicionamos a classe .input ao campo de senha para que ele tivesse o mesmo comportamento do campo de e-mail.
+Corrigimos os atributos for dos labels para que apontassem corretamente para os ids dos seus respectivos campos (for="email" e for="senha"), melhorando a acessibilidade.
+
+2. Validação do Rótulo para E-mail Inválido
+Problema: Mesmo com a correção acima, ao digitar um texto que não era um e-mail válido (como "555"), o rótulo do e-mail voltava à posição original por causa da validação nativa do navegador.
+Solução:
+JavaScript: Criamos um script que adiciona uma classe has-value a qualquer campo de entrada (.input) assim que o usuário começa a digitar.
+CSS: Adicionamos uma regra de estilo no index.html que força o rótulo a permanecer suspenso sempre que a classe has-value estiver presente, independentemente de o e-mail ser válido ou não.
+
+3. Validação do Formato do E-mail
+Necessidade: Impedir que o usuário pudesse prosseguir digitando qualquer texto no campo de e-mail.
+Solução:
+Validação no Login: Adicionamos uma função logar(), que também verifica o formato do e-mail antes de tentar efetuar o login. Se for inválido, o processo é interrompido.
+Em resumo, nós garantimos que a interface do seu formulário seja mais inteligente e amigável, com rótulos que se comportam de maneira consistente e validações que guiam o usuário em tempo real, melhorando a experiência e a segurança.
+
+Em resumo, nós garantimos que a interface do seu formulário seja mais inteligente e amigável, com rótulos que se comportam de maneira consistente e validações que guiam o usuário em tempo real, melhorando a experiência e a segurança.
+
+
+
+
+
+Claro! Com prazer, preparei um resumo completo de todas as modificações e funcionalidades que implementamos no seu projeto de tela de login.
+
+Resumo das Modificações e Funcionalidades
+O objetivo principal foi expandir a funcionalidade de login, criando um fluxo completo de cadastro de novos usuários e melhorando a experiência geral, sempre seguindo as boas práticas de desenvolvimento.
+
+1. Criação da Tela e Fluxo de Cadastro
+Nova Tela de Cadastro (registrar.html): Foi criada uma página dedicada ao registro de novos usuários. Ela mantém a mesma identidade visual da tela de login, mas inclui um campo adicional de "Confirmar Senha".
+Lógica de Cadastro (registrar.js): Um novo arquivo JavaScript foi criado para gerenciar a tela de cadastro. Ele contém:
+Validação para garantir que o e-mail inserido tem um formato válido.
+Verificação para assegurar que os campos "Senha" e "Confirmar Senha" coincidem.
+Após o sucesso no cadastro, o usuário é alertado e redirecionado de volta para a tela de login para poder entrar.
+Integração Inteligente: Na tela de login, se um usuário insere credenciais que não existem, o sistema agora exibe a mensagem: "Usuário não cadastrado. Clique em "OK" para ser direcionado à página de cadastro.", redirecionando-o automaticamente para a tela de registro caso ele confirme.
+2. Melhorias de Usabilidade e Experiência do Usuário
+Funcionalidade "Lembrar-me":
+Implementamos a lógica para que, ao marcar a caixa "Lembrar-me" e fazer o login, o e-mail do usuário seja salvo no navegador (localStorage).
+Na próxima vez que o usuário abrir a página de login, o campo de e-mail já virá preenchido, agilizando o acesso.
+Consistência na Navegação: Adicionamos uma verificação na página de cadastro que impede que ela seja recarregada. Se o usuário tentar atualizar a página (F5), ele é automaticamente enviado de volta para a tela de login (index.html), garantindo que o fluxo sempre comece no ponto correto.
+Efeito Visual nos Campos: Mantivemos o efeito de "rótulo flutuante" em todos os campos de texto, tanto no login quanto no cadastro, para uma interface mais moderna e intuitiva.
+3. Padronização Visual e de Código
+Alinhamento e Tamanho dos Formulários: Ajustamos o CSS para que as caixas de formulário das telas de "Login" e "Registrar" tivessem exatamente a mesma altura (500px). Isso corrigiu o desalinhamento dos títulos e garantiu uma aparência consistente entre as duas páginas.
+Refatoração e Boas Práticas (Separação de Responsabilidades):
+Removemos todo o código CSS (<style>) e JavaScript (<script>) que estava diretamente nos arquivos HTML (index.html e registrar.html).
+Todo o código de estilização foi centralizado no arquivo src/css/estilo.css.
+Todo o código de comportamento e lógica foi organizado em seus respectivos arquivos JavaScript (src/js/script.js e src/js/registrar.js).
+Essa organização deixa o projeto muito mais limpo, profissional e fácil de dar manutenção no futuro.
+
+Em resumo, seu projeto evoluiu de uma simples tela de login para um sistema com um fluxo de cadastro completo, com melhorias significativas de usabilidade e uma estrutura de código organizada e profissional.
