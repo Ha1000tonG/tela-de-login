@@ -82,8 +82,8 @@ async function logar() {
             // Se o login for bem-sucedido, redireciona para a home
             location.href = 'home.html';
         }
-    } catch (error) {
-        console.error('Falha ao conectar com a API:', error);
+    } catch (e) {
+        console.error('Falha na requisição para a API. O servidor pode estar offline ou ter ocorrido um erro de rede.', e);
         alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
     }
 }
