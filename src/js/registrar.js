@@ -82,8 +82,11 @@ async function registrar() {
             // Se a resposta não for OK, usa a mensagem de erro da API
             alert(`Erro no cadastro: ${result.error}`);
         } else {
-            // Se a resposta for OK, usa a mensagem de sucesso da API
-            alert(result.message);
+            // Cria uma mensagem de sucesso profissional e informativa
+            const successMessage =
+                "Cadastro realizado com sucesso!\n\n" +
+                "Enviamos um link de confirmação para o seu e-mail. Por favor, verifique sua caixa de entrada (e a pasta de spam) para ativar sua conta antes de fazer o login.";
+            alert(successMessage);
             // Redireciona para o login após o sucesso
             location.href = 'index.html';
         }

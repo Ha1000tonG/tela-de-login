@@ -77,7 +77,7 @@ async function logar() {
 
         if (!response.ok) {
             // Se a resposta não for OK (ex: 401 Unauthorized), usa a mensagem de erro da API
-            alert(`Falha no login: ${result.error}`);
+            alert('Falha no login: Email ou senha inválidos. Por favor, verifique também se você confirmou o cadastro no e-mail recebido.');
         } else {
             // Se o login for bem-sucedido, redireciona para a home
             location.href = 'home.html';
