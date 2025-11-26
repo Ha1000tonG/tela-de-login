@@ -23,18 +23,23 @@ document.querySelectorAll('.input').forEach(input => {
     });
 });
 
-const inputPass = document.getElementById('senha');
-const btnMostrarSenha = document.getElementById('btn-senha');
+// Função para alternar a visibilidade da senha (padronizada)
+function togglePasswordVisibility(inputId, buttonId) {
+    const inputPass = document.getElementById(inputId);
+    const btnMostrarSenha = document.getElementById(buttonId);
 
-btnMostrarSenha.onclick = () => {
     if (inputPass.type === 'password') {
         inputPass.type = 'text';
+        btnMostrarSenha.classList.remove('bi-lock');
         btnMostrarSenha.classList.add('bi-unlock');
     } else {
         inputPass.type = 'password';
-        btnMostrarSenha.classList.remove('bi-unlock')
+        btnMostrarSenha.classList.remove('bi-unlock');
+        btnMostrarSenha.classList.add('bi-lock');
     }
 }
+
+document.getElementById('btn-senha').onclick = () => togglePasswordVisibility('senha', 'btn-senha');
 
 async function logar() {
     const emailInput = document.getElementById('email');

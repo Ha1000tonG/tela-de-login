@@ -73,7 +73,7 @@ async function registrar() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password: senha }),
         });
 
         const result = await response.json();
