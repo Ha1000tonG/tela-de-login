@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Adiciona um listener para o checkbox "Lembrar-me"
+// Remove o email do localStorage imediatamente se a caixa for desmarcada.
+document.getElementById('lembrar-me').addEventListener('change', function() {
+    if (!this.checked) {
+        localStorage.removeItem('email');
+    }
+});
+
 document.querySelectorAll('.input').forEach(input => {
     // Garante que o estado inicial esteja correto no carregamento da página (caso o navegador preencha automaticamente)
     if (input.value) {
