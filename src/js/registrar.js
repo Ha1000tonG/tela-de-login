@@ -75,9 +75,7 @@ async function registrar() {
             },
             body: JSON.stringify({ email, password: senha }),
         });
-        if (!response.ok) {
-            throw new Error("Erro na API: " + response.status);
-        }
+
         const text = await response.text();
 
         let data;
@@ -86,23 +84,24 @@ async function registrar() {
             data = JSON.parse(text);
         } catch (error) {
             console.error("Resposta da API não é JSON:", text);
-            throw new Error("Erro no servidor");
+            throw new Error(text);
         }
 
         if (!response.ok) {
-            // Se a resposta não for OK, usa a mensagem de erro da API
-            alert(`Erro no cadastro: ${result.error}`);
-        } else {
-            // Cria uma mensagem de sucesso profissional e informativa
-            const successMessage =
-                "Cadastro realizado com sucesso!\n\n" +
-                "Enviamos um link de confirmação para o seu e-mail. Por favor, verifique sua caixa de entrada (e a pasta de spam) para ativar sua conta antes de fazer o login.";
-            alert(successMessage);
-            // Redireciona para o login após o sucesso
-            location.href = 'index.html';
+            console.error("Erro retornado pela API:", data);
+            alert(`Erro no cadastro: ${data.error || "Erro desconhecido do servidor"}`);
+            return;
         }
+
+        const successMessage =
+            "Cadastro realizado com sucesso!\n\n" +
+            "Enviamos um link de confirmação para o seu e-mail. Por favor, verifique sua caixa de entrada (e a pasta de spam) para ativar sua conta antes de fazer o login.";
+
+        alert(successMessage);
+        location.href = 'index.html';
+
     } catch (error) {
         console.error('Falha ao conectar com a API:', error);
-        alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
+        alert(error.message || 'Não foi possível conectar ao servidor.');
     }
 }
