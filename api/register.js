@@ -5,7 +5,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Erro no servidor: As credenciais do Supabase não foram encontradas. Verifique o arquivo .env e reinicie o servidor.");
+    console.error("Credenciais do Supabase não configuradas no ambiente.");
 }
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
