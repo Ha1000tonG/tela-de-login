@@ -75,8 +75,19 @@ async function registrar() {
             },
             body: JSON.stringify({ email, password: senha }),
         });
+        if (!response.ok) {
+            throw new Error("Erro na API: " + response.status);
+        }
+        const text = await response.text();
 
-        const result = await response.json();
+        let data;
+
+        try {
+            data = JSON.parse(text);
+        } catch (error) {
+            console.error("Resposta da API não é JSON:", text);
+            throw new Error("Erro no servidor");
+        }
 
         if (!response.ok) {
             // Se a resposta não for OK, usa a mensagem de erro da API

@@ -11,9 +11,17 @@ if (!supabaseUrl || !supabaseAnonKey) {
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default async function handler(request, response) {
-    if (request.method !== 'POST') {
-        return response.status(405).json({ error: 'Método não permitido' });
-    }
+    if (req.method === "POST") {
+
+        res.status(200).json({
+            sucesso: true
+        });
+
+    } else {
+
+        res.status(405).json({
+            erro: "Método não permitido"
+        });
 
     try {
         const { email, password } = request.body;
