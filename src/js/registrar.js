@@ -88,8 +88,20 @@ async function registrar() {
         }
 
         if (!response.ok) {
+
             console.error("Erro retornado pela API:", data);
-            alert(`Erro no cadastro: ${data.error || "Erro desconhecido do servidor"}`);
+
+            let mensagemErro = data.error || "Erro desconhecido do servidor";
+
+            // Verifica se o email já está cadastrado
+            if (mensagemErro.toLowerCase().includes("already") ||
+                mensagemErro.toLowerCase().includes("registered")) {
+
+                mensagemErro = "Este e-mail já está cadastrado. Tente fazer login ou use outro e-mail.";
+
+            }
+
+            alert(mensagemErro);
             return;
         }
 
