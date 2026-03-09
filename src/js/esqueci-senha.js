@@ -38,3 +38,6 @@ async function solicitarReset() {
         alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
     }
 }
+
+// deixa a função disponível para o HTML
+window.solicitarReset = solicitarReset;

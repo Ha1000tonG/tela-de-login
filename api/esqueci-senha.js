@@ -29,10 +29,19 @@ export default async function handler(request, response) {
         redirectTo: redirectUrl,
     });
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        return response.status(400).json({ error: 'Email inválido.' });
+    }
+
     if (error) {
-        // Não retornamos o erro real para não informar se um e-mail existe ou não no sistema.
-        // Apenas registramos no log do servidor.
-        console.error('Erro ao solicitar reset de senha:', error.message);
+        console.error('Erro ao solicitar reset de senha:', error);
+
+        // ainda retornamos sucesso por segurança
+        return response.status(200).json({
+            message: 'Se o e-mail existir, um link foi enviado.'
+        });
     }
 
     // Por segurança, sempre retornamos uma mensagem de sucesso,

@@ -1,63 +1,43 @@
-// Função global para ser chamada pelo botão no HTML
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+    "https://bcigiymerelioipvmyrh.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJjaWdpeW1lcmVsaW9pcHZteXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQxMTU3NzcsImV4cCI6MjA3OTY5MTc3N30.Whgu1tSTVhTbpAk5cd6wV3gxInr53JrRRqbksnllLZg"
+)
+
 window.redefinirSenha = async function () {
-    const novaSenha = document.getElementById('nova-senha').value;
-    const confirmarSenha = document.getElementById('confirmar-nova-senha').value;
 
-    // Validações básicas no front-end
-    if (novaSenha.length < 6) return alert('A nova senha deve ter no mínimo 6 caracteres.');
-    if (novaSenha !== confirmarSenha) return alert('As senhas não coincidem.');
+    const novaSenha = document.getElementById('nova-senha').value
+    const confirmarSenha = document.getElementById('confirmar-nova-senha').value
 
-    // Pega o token de acesso da URL.
-    // Ex: http://.../resetar-senha.html#access_token=SEU_TOKEN&...
-    const fragment = new URLSearchParams(window.location.hash.substring(1));
-    const accessToken = fragment.get('access_token');
-
-    if (!accessToken) {
-        return alert('Token de acesso não encontrado. O link pode ser inválido ou ter expirado.');
+    if (!novaSenha || !confirmarSenha) {
+        alert("Preencha todos os campos")
+        return
     }
 
-    try {
-        const response = await fetch('/api/resetar-senha', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                accessToken: accessToken,
-                newPassword: novaSenha,
-            }),
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-            alert(`Erro ao redefinir a senha: ${result.error}`);
-        } else {
-            alert('Senha redefinida com sucesso! Você será redirecionado para a tela de login.');
-            window.location.href = "index.html";
-        }
-    } catch (error) {
-        console.error('Falha ao conectar com a API:', error);
-        alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
+    if (novaSenha.length < 6) {
+        alert("A senha deve ter no mínimo 6 caracteres")
+        return
     }
-};
 
-// Lógica de UI (efeitos de label, visibilidade da senha, etc.)
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.input').forEach(input => {
-        input.addEventListener('input', () => {
-            input.classList.toggle('has-value', input.value.length > 0);
-        });
-    });
+    if (novaSenha !== confirmarSenha) {
+        alert("As senhas não coincidem")
+        return
+    }
 
-    const togglePasswordVisibility = (inputId, buttonId) => {
-        const inputPass = document.getElementById(inputId);
-        const btnMostrarSenha = document.getElementById(buttonId);
-        const isPassword = inputPass.type === 'password';
-        inputPass.type = isPassword ? 'text' : 'password';
-        btnMostrarSenha.classList.toggle('bi-lock', !isPassword);
-        btnMostrarSenha.classList.toggle('bi-unlock', isPassword);
-    };
+    const { error } = await supabase.auth.updateUser({
+        password: novaSenha
+    })
 
-    document.getElementById('btn-nova-senha').onclick = () => togglePasswordVisibility('nova-senha', 'btn-nova-senha');
-    document.getElementById('btn-confirmar-nova-senha').onclick = () => togglePasswordVisibility('confirmar-nova-senha', 'btn-confirmar-nova-senha');
-});
+    if (error) {
 
+        alert("Erro ao redefinir senha: " + error.message)
+
+    } else {
+
+        alert("Senha redefinida com sucesso!")
+        window.location.href = "index.html"
+
+    }
+
+}
