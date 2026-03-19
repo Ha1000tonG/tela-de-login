@@ -17,7 +17,7 @@ Projeto web de autenticação com interface em HTML, CSS e JavaScript puro, inte
 
 ## 🧱 Estrutura atual do projeto
 
-```text
+```
 .
 ├── api/
 │   ├── esqueci-senha.js
