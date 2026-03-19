@@ -1,93 +1,143 @@
-# Sistema de Login e Cadastro Full-Stack
+# Tela de Login com Cadastro e Recuperação de Senha
 
-Este é um projeto completo de uma aplicação web para autenticação de usuários, construído com uma arquitetura moderna e segura. Ele inclui funcionalidades de cadastro, login e recuperação de senha, utilizando um front-end interativo e um back-end serverless.
+Projeto web de autenticação com interface em HTML, CSS e JavaScript puro, integrado ao Supabase para cadastro, login e recuperação de senha. A aplicação utiliza páginas estáticas no front-end e funções serverless da Vercel no back-end para processar autenticação e envio do fluxo de redefinição de senha.
 
-## 🚀 Acesso ao Projeto
+## 🚀 Acesso ao projeto
 
-Você pode acessar a aplicação em produção através do seguinte link:
+- Produção: https://tela-de-login-two-sable.vercel.app/
 
-**[Acessar a Aplicação](https://tela-de-login-two-sable.vercel.app/)**
+## ✨ Funcionalidades
 
----
+- Login com validação básica de e-mail no front-end.
+- Cadastro de usuários com confirmação de senha e validação de tamanho mínimo.
+- Recuperação de senha por e-mail.
+- Redefinição de senha via Supabase após o clique no link enviado por e-mail.
+- Opção **"Lembrar-me"** com persistência do e-mail em `localStorage`.
+- Interface reutilizada entre as páginas com o mesmo CSS base.
 
-## ✨ Funcionalidades Principais
+## 🧱 Estrutura atual do projeto
 
--   **Autenticação Completa**: Fluxo de ponta a ponta para o gerenciamento de usuários.
--   **Cadastro de Usuários**: Novos usuários podem se registrar com e-mail e senha. O sistema valida o formato do e-mail e exige a confirmação da senha.
--   **Login Seguro**: Autenticação de credenciais com comunicação segura com o back-end.
--   **Recuperação de Senha**: Funcionalidade "Esqueci minha senha" que envia um e-mail com um link seguro para o usuário redefinir sua senha.
--   **Interface Moderna**: Formulários com rótulos flutuantes que melhoram a experiência do usuário.
--   **Funcionalidade "Lembrar-me"**: Salva o e-mail do usuário no navegador (`localStorage`) para preencher automaticamente o campo no próximo acesso.
--   **Redirecionamento Inteligente**: Caso um usuário tente fazer login com credenciais inexistentes, o sistema o convida a se cadastrar.
+```text
+.
+├── api/
+│   ├── esqueci-senha.js
+│   ├── login.js
+│   └── register.js
+├── src/
+│   ├── css/
+│   │   └── estilo.css
+│   ├── imagens/
+│   │   ├── background3.jpg
+│   │   ├── background5.jpg
+│   │   └── background6.jpg
+│   └── js/
+│       ├── esqueci-senha.js
+│       ├── registrar.js
+│       ├── resetar-senha.js
+│       └── script.js
+├── esqueci-senha.html
+├── home.html
+├── index.html
+├── registrar.html
+├── resetar-senha.html
+├── package.json
+└── README.md
+```
 
----
+## 🖥️ Páginas do front-end
 
-## 🛠️ Arquitetura e Tecnologias Utilizadas
+- `index.html`: tela principal de login.
+- `registrar.html`: tela de criação de conta.
+- `esqueci-senha.html`: tela para solicitar o envio do link de recuperação.
+- `resetar-senha.html`: tela usada após o redirecionamento do e-mail para definir uma nova senha.
+- `home.html`: página de destino após login bem-sucedido.
 
-O projeto foi desenvolvido seguindo as melhores práticas, separando o front-end do back-end e utilizando serviços escaláveis.
+## ⚙️ Scripts do front-end
 
--   **Front-end**:
-    -   `HTML5`, `CSS3` e `JavaScript` puro.
-    -   **Comunicação com API**: Utiliza a `Fetch API` para fazer requisições `POST` assíncronas ao back-end.
-    -   **Estrutura**: Código organizado com separação de responsabilidades (HTML para estrutura, CSS para estilo e JS para lógica).
+Todos os scripts de interface ficam em `src/js/`:
 
--   **Back-end (Serverless)**:
-    -   **Hospedagem e Funções**: Vercel para o deploy e para a execução de funções serverless.
-    -   **Endpoints de API**: A pasta `/api` contém as funções Node.js que atuam como nosso back-end:
-        -   `api/register.js`: Endpoint para registrar novos usuários.
-        -   `api/login.js`: Endpoint para autenticar usuários existentes.
-        -   `api/esqueci-senha.js`: Endpoint para iniciar o processo de recuperação de senha.
-        -   `api/resetar-senha.js`: Endpoint para definir uma nova senha a partir do token de recuperação.
+- `script.js`: controla a página de login, o botão de mostrar senha e o recurso de lembrar e-mail.
+- `registrar.js`: faz as validações de cadastro e envia a requisição para `/api/register`.
+- `esqueci-senha.js`: envia a solicitação de recuperação para `/api/esqueci-senha`.
+- `resetar-senha.js`: usa o cliente do Supabase no navegador para atualizar a senha do usuário autenticado pelo link de recuperação.
 
--   **Banco de Dados e Autenticação**:
-    -   **Plataforma**: Supabase como nosso BaaS (Backend as a Service).
-    -   **Funcionalidades**:
-        -   Gerencia o banco de dados de usuários.
-        -   Oferece autenticação segura, incluindo a criptografia automática de senhas.
-        -   Serviço de envio de e-mails para confirmação de cadastro e recuperação de senha.
+## ☁️ Endpoints serverless
 
----
+As funções da pasta `api/` são executadas pela Vercel:
 
-## 🚀 Como Executar o Projeto Localmente
+- `api/login.js`: autentica o usuário com `signInWithPassword`.
+- `api/register.js`: cria a conta com `signUp`.
+- `api/esqueci-senha.js`: dispara o e-mail de recuperação com `resetPasswordForEmail`.
 
-Para rodar esta aplicação em seu ambiente de desenvolvimento, você precisará ter o Node.js e a Vercel CLI instalados.
+> Observação: atualmente não existe um arquivo `api/resetar-senha.js`. A redefinição final da senha acontece no front-end, em `src/js/resetar-senha.js`, usando o cliente do Supabase carregado no navegador.
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
-    ```
+## 🛠️ Tecnologias utilizadas
 
-2.  **Instale a Vercel CLI:**
-    ```bash
-    npm i -g vercel
-    ```
+- HTML5
+- CSS3
+- JavaScript puro
+- Supabase
+- Vercel Functions
+- Bootstrap Icons
 
-3.  **Crie o arquivo de variáveis de ambiente:**
-    Na raiz do projeto, crie um arquivo chamado `.env` e adicione suas credenciais do Supabase. Você pode encontrá-las no painel do seu projeto em `Settings > API`.
+## 📦 Dependências
 
-    ```env
-    # Arquivo .env
-    SUPABASE_URL="https://bcigiymerelioipvmyrh.supabase.co"
-    SUPABASE_ANON_KEY="SUA_SUPABASE_ANON_KEY"
-    SUPABASE_KEY="SUA_SUPABASE_SERVICE_ROLE_KEY"
-    ```
-    > **Importante**: A `SUPABASE_KEY` é a chave `service_role`, que é secreta e usada apenas no back-end para operações de administrador, como a redefinição de senhas.
+Instalada via `package.json`:
 
-4.  **Inicie o servidor de desenvolvimento:**
-    Execute o seguinte comando na raiz do projeto:
-    ```bash
-    vercel dev
-    ```
-    Este comando irá iniciar um servidor local que executa tanto o front-end quanto as funções serverless da pasta `/api`, simulando o ambiente de produção da Vercel.
+- `@supabase/supabase-js`
 
-5.  **Acesse a aplicação:**
-    Abra seu navegador e acesse o endereço fornecido pelo `vercel dev` (geralmente `http://localhost:3000`).
+## 🔐 Variáveis de ambiente
 
----
+Para executar as funções serverless localmente, crie um arquivo `.env` na raiz do projeto com:
 
-## 🔒 Segurança
+```env
+SUPABASE_URL="https://SEU-PROJETO.supabase.co"
+SUPABASE_ANON_KEY="SUA_CHAVE_ANON"
+```
 
--   **Variáveis de Ambiente**: Todas as chaves e credenciais sensíveis são armazenadas em um arquivo `.env` e não são versionadas no Git, graças ao arquivo `.gitignore`.
--   **Criptografia de Senhas**: O Supabase gerencia automaticamente a criptografia das senhas, garantindo que elas nunca sejam armazenadas em texto plano.
--   **Prevenção de Enumeração de E-mail**: A API de recuperação de senha sempre retorna uma mensagem de sucesso genérica para evitar que um invasor descubra quais e-mails estão cadastrados no sistema.
+As rotas em `api/` usam essas variáveis para inicializar o cliente do Supabase no servidor.
+
+## ▶️ Como executar localmente
+
+### 1. Instale as dependências
+
+```bash
+npm install
+```
+
+### 2. Instale a Vercel CLI, se necessário
+
+```bash
+npm install -g vercel
+```
+
+### 3. Configure o ambiente
+
+Crie o arquivo `.env` com as variáveis mostradas acima.
+
+### 4. Inicie o projeto
+
+```bash
+vercel dev
+```
+
+A aplicação costuma ficar disponível em `http://localhost:3000` durante o desenvolvimento.
+
+## 🔄 Fluxo de autenticação
+
+1. O usuário acessa `index.html` e envia e-mail e senha.
+2. O front-end chama `/api/login`.
+3. No cadastro, `registrar.html` envia os dados para `/api/register`.
+4. Na recuperação, `esqueci-senha.html` chama `/api/esqueci-senha`.
+5. O e-mail de recuperação redireciona o usuário para `resetar-senha.html`.
+6. A página `resetar-senha.html` executa `src/js/resetar-senha.js` para atualizar a senha no Supabase.
+
+## 🔒 Observações importantes
+
+- O recurso de recuperar senha retorna mensagem genérica por segurança, evitando enumeração de e-mails.
+- O projeto depende do Supabase configurado corretamente para autenticação por e-mail.
+- O arquivo `src/js/resetar-senha.js` usa a biblioteca do Supabase via CDN no navegador.
+
+## 📄 Licença
+
+Este projeto está licenciado sob os termos definidos no arquivo `LICENSE`.
